@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>莫名其妙的东西</title>
+	<script type="text/javascript" src="JS库/jquery-3.3.1.js"></script>
+	<style type="text/css">
+		body{
+			background-color:black;
+			color: white;
+		
+
+		
+		}
+		table{
+			border: 7px solid #7FFFD4;
+			border-radius: 20px;
+			width: 800px;
+			padding: 10px;
+			font-size: 20px;
+			/*font-family: 黑体;*/
+			margin: auto;
+		}
+		th{height: 20px;}
+		.cell{
+			height:60px;
+			font-size:15px;
+			color:white;
+		}
+		.cell,th{
+			border:5px outset #2F4F4F;
+			width: 100px;
+			/*position: absolute;*/
+			/*font-size: */
+		}
+		.blank{height: 20px;}
+
+		tr:nth-of-type(1) td{
+			
+
+		}
+		/*鼠标悬停后放大显示框*/
+
+		
+		#show{
+			width: 300px;
+			height: 200px;
+			border: 10px groove #66ffff;
+			position: absolute;
+			left:40%;
+			top:20%;
+			display: none;
+			background-color:white;
+			color:yellow;
+			font-weight:bold;
+			text-align:center;
+			font-size:40px;
+		}
+	</style>
+	<script type="text/javascript">
+		// JSON数组储存课程信息
+		//我的课
+		var pigClass1 = [
+			{
+				"className":"企业及应用开发技术",//14周
+				"startTime":2,  			//课程开始时间
+				"endTime":14,	//课程结束时间
+				"onTime":[1.2,3.4]			//上课时间
+
+			},
+			{
+				"className":"网络通信程序设计",
+				"startTime":2,  			//课程开始时间
+				"endTime":12,
+				"onTime":[1.3,3.2]
+
+			},
+			{
+				"className":"密码学",
+				"startTime":2,  			//课程开始时间
+				"endTime":14,	
+				"onTime":[2.2,4.3]
+
+			},
+			{
+				"className":"Linux实用技术",
+				"startTime":2,  			//课程开始时间
+				"endTime":14,
+				"onTime":[3.1]
+
+			},
+			{
+				"className":"网络安全技术",
+				"startTime":2,  			//课程开始时间
+				"endTime":10,
+				"onTime":[3.3,5.3]
+
+			},
+			{
+				"className":"软件工程",
+				"startTime":2,  			//课程开始时间
+				"endTime":14,	
+				"onTime":[3.5,5.1]
+
+			},
+		//];
+
+		// 她的课
+		//var pigClass2 = [
+			{
+				"className":"无线通信",//1-13周
+				"startTime":1,  			//课程开始时间
+				"endTime":13,
+				"onTime":[1.1]
+
+			},
+			{
+				"className":"无线通信",//4-6周
+				"startTime":4,  			//课程开始时间
+				"endTime":6,
+				"onTime":[4.2]
+
+			},
+			{
+				"className":"无线通信",//11-12周
+				"startTime":11,  			//课程开始时间
+				"endTime":12,
+				"onTime":[5.5]
+
+			},
+			//*************
+			{
+				"className":"通信网络理论基础",//1-13周
+				"startTime":1,  			//课程开始时间
+				"endTime":13,
+				"onTime":[1.2]
+
+			},
+			{
+				"className":"通信网络理论基础",//3-13周
+				"startTime":3,  			//课程开始时间
+				"endTime":13,
+				"onTime":[3.2]
+
+			},
+			{
+				"className":"通信网络理论基础",//11-12周
+				"startTime":11,  			//课程开始时间
+				"endTime":12,
+				"onTime":[1.5]
+
+			},
+			//*************
+			{
+				"className":"现代交换技术",//1-13周
+				"startTime":1,  			//课程开始时间
+				"endTime":13,
+				"onTime":[1.3]
+
+			},
+			{
+				"className":"现代交换技术",//7-9周
+				"startTime":7,  			//课程开始时间
+				"endTime":9,
+				"onTime":[4.2]
+
+			},
+			//*************
+			{
+				"className":"数字通讯",//1-8周
+				"startTime":1,  			//课程开始时间
+				"endTime":8,
+				"onTime":[1.4]
+
+			},
+			//*************
+			{
+				"className":"无线网络技术",//1-13周
+				"startTime":1,  			//课程开始时间
+				"endTime":13,
+				"onTime":[2.2]
+
+			},
+			{
+				"className":"无线网络技术",//1-3周
+				"startTime":1,  			//课程开始时间
+				"endTime":3,
+				"onTime":[4.2]
+
+			},
+			//*************
+			{
+				"className":"可编程逻辑器件",//3-6周
+				"startTime":1,  			//课程开始时间
+				"endTime":8,
+				"onTime":[2.4]
+
+			},
+			//*************
+			{
+				"className":"形势与政策",//1-3周
+				"startTime":1,  			//课程开始时间
+				"endTime":3,
+				"onTime":[2.5]
+
+			},
+			//*************
+			{
+				"className":"Matlab",//1-8周
+				"startTime":1,  			//课程开始时间
+				"endTime":8,
+				"onTime":[4.1]
+
+			},
+			{
+				"className":"Matlab",//5-8周
+				"startTime":5,  			//课程开始时间
+				"endTime":8,
+				"onTime":[2.5]
+
+			},
+			//*************
+			{
+				"className":"移动通信",//1-13周
+				"startTime":1,  			//课程开始时间
+				"endTime":13,
+				"onTime":[5.2]
+
+			},
+			{
+				"className":"移动通信",//9-10周
+				"startTime":9,  			//课程开始时间
+				"endTime":10,
+				"onTime":[4.5]
+
+			},
+			//*************
+			// {
+			// 	"className":"DSP应用",//1-12周
+			// 	"startTime":1,  			//课程开始时间
+			// 	"endTime":12,
+			// 	"onTime":[4.3]
+
+			// },
+			{
+				"className":"DSP应用",//7-10周
+				"startTime":7,  			//课程开始时间
+				"endTime":10,
+				"onTime":[5.3,5.4]
+
+			},
+		];
+
+	</script>
+</head>
+<body>
+	<div id="show"></div>
+	<table cellspacing="4">
+		<caption>Our Programme</caption>
+		<tr>
+			<td colspan="6" class="blank"></td> 
+			<td> </td>
+		</tr>
+		<tr>
+			<th>周一</th>
+			<th>周二</th>
+			<th>周三</th>
+			<th>周四</th>
+			<th>周五</th>
+			<th>周六</th>
+			<th>周七</th>
+		</tr>
+		<tr id="class1">
+			<td class="cell monday"> </td>
+			<td class="cell tuesday"> </td>
+			<td class="cell wednesday"> </td>
+			<td class="cell thursday"> </td>
+			<td class="cell friday"> </td>
+			
+			<!-- 周六日没课暂不写此功能		 -->
+			<td class="cell"> </td>
+			<td class="cell"> </td>
+		</tr>
+		<tr id="class2">
+			<td class="cell monday"> </td>
+			<td class="cell tuesday"> </td>
+			<td class="cell wednesday"> </td>
+			<td class="cell thursday"> </td>
+			<td class="cell friday"> </td>
+			<td class="cell"> </td>
+			<td class="cell"> </td>
+		</tr>
+		<tr><td colspan="7" class="blank"></td></tr>
+		<tr id="class3" >
+			<td class="cell monday"> </td>
+			<td class="cell tuesday"> </td>
+			<td class="cell wednesday"> </td>
+			<td class="cell thursday"> </td>
+			<td class="cell friday"> </td>
+			<td class="cell"> </td>
+			<td class="cell"> </td>
+		</tr>
+		<tr id="class4">
+			<td class="cell monday"> </td>
+			<td class="cell tuesday"> </td>
+			<td class="cell wednesday"> </td>
+			<td class="cell thursday"> </td>
+			<td class="cell friday"> </td>
+			<td class="cell"> </td>
+			<td class="cell"> </td>
+		</tr>
+		<tr><td colspan="7" class="blank"></td></tr>
+		<tr id="class5">
+			<td class="cell monday"> </td>
+			<td class="cell tuesday"> </td>
+			<td class="cell wednesday"> </td>
+			<td class="cell thursday"> </td>
+			<td class="cell friday"> </td>
+			<td class="cell"> </td>
+			<td class="cell"> </td>
+		</tr>
+	</table>
+</body>
+<script type="text/javascript">
+
+	//当前时间显示
+	function showStr(){
+		var day =new Date().getDay();
+		var time = new Date().toLocaleString();
+		var str;//显示的字符串
+		if(day == 0){
+			str = time+"&nbsp星期日"
+		}else if(day == 1){
+			str = time+"&nbsp星期一"
+		}else if(day == 2){
+			str = time+"&nbsp星期二"
+		}else if(day == 3){
+			str = time+"&nbsp星期三"
+		}else if(day == 4){
+			str = time+"&nbsp星期四"
+		}else if(day == 5){
+			str = time+"&nbsp星期五"
+		}else if(day == 6){
+			str = time+"&nbsp星期六"
+		}
+		//$("tr:first td:eq(0)").html(str);
+		document.querySelector("tr:nth-of-type(1) td:nth-of-type(1)").innerHTML = str;
+	}
+	setInterval(function(){showStr();},1000);
+
+			//当前周数显示
+		var nowWeek;
+		var nowMonth = new Date().getMonth()+1;
+		//console.log(nowMonth);
+		var nowDate = new Date().getDate();
+		//console.log(nowDate);
+		if(nowMonth ==3){
+			if(nowDate>=5&&nowDate<=11){
+				nowWeek = 1;
+			}
+			if(nowDate>=12&&nowDate<=18){
+				nowWeek = 2;
+			}
+			if(nowDate>=19&&nowDate<=25){
+				nowWeek = 3;
+			}
+			if(nowDate>=26){
+				nowWeek = 4;
+			}
+		}else if(nowMonth ==4){//四月份
+			if(nowDate ==1){
+				nowWeek = 4;
+			}
+			if(nowDate>=2&&nowdate<=8){
+				nowWeek =5;
+			}
+			if(nowDate>=9&&nowDate<=15){
+				nowWeek = 6;
+			}
+			if(nowDate>=16&&nowDate<=22){
+				nowWeek = 7;
+			}
+			if(nowDate>=23&&nowDate<=29){
+				nowWeek = 8;
+			}
+			if(nowDate==30){
+				nowWeek = 9;
+			}
+		}else if(nowMonth ==5){//五月份
+			if(nowDate<=6){
+				nowWeek = 9;
+			}
+			if(nowDate>=7&&nowDate<=13){
+				nowWeek = 10;
+			}
+			if(nowDate>=14&&nowDate<=20){
+				nowWeek = 11;
+			}
+			if(nowDate>=21&&nowDate<=27){
+				nowWeek = 12;
+			}
+			if(nowDate>=28){
+				nowWeek = 13;
+			}
+		}else if(nowMonth ==6){
+			if(nowDate<=3){
+				nowWeek = 13;
+			}
+			if(nowDate>=4&&nowDate<=10){
+				nowWeek = 14;
+			}
+		}
+
+	//周数显示
+		//$("tr:first td:eq(1)").html("第&nbsp"+nowWeek+"&nbsp周");       JQ
+		document.querySelector("tr:nth-of-type(1) td:nth-of-type(2)").innerHTML = "第&nbsp"+nowWeek+"&nbsp周";
+	
+//判断课程位置
+	for(var i=0;i<pigClass1.length;i++){
+		//console.log("执行1");
+		//console.log(pigClass1[i].startTime);
+		//在上课周内
+		if(pigClass1[i].startTime<=nowWeek && nowWeek<=pigClass1[i].endTime ){
+			//console.log("执行2");
+			for(var j=0;j<pigClass1[i].onTime.length;j++){
+				//console.log("执行3");
+				//周几
+				var column = Math.floor(pigClass1[i].onTime[j]);
+				//第几节课
+				var row = Math.round((pigClass1[i].onTime[j]-column)*10);
+				//console.log("执行4");
+				var select ="#class"+row+" :nth-child("+column+")";
+				console.log(select);
+				console.log(pigClass1[i].className);
+				//$(select).html(pigClass1[i].className);       JQ
+				document.querySelector(select).innerHTML = pigClass1[i].className;
+			}
+		}
+	}
+// 鼠标悬停放大
+	//var showText = $("#show");   JQ
+	var showText = document.querySelector("#show");
+	var cell = document.querySelectorAll(".cell");
+	for(var o=0;o<cell.length;o++){  
+
+		cell[i].addEventListener("mouseover",function(){
+		//var txt = $(this).html();
+		showText.innerHTML = cell[i].innerHTML;
+		//showText.show();
+		showText.style.display ="block";
+	}); 
+			cell[i].addEventListener("mouseleave",function(){
+	
+		showText.style.display = "none";
+	});
+	}
+	
+	// $(".cell").mouseover(function(){
+	// 	//var txt = $(this).html();
+	// 	showText.html(document.querySelector(".cell").innerHTML);
+	// 	showText.show();
+	// });
+	// $(".cell").mouseleave(function(){
+	// document.querySelector(".cell").mouseleave(function(){
+	// 	showText.hide();
+	// });
+
+</script>
+</html>
