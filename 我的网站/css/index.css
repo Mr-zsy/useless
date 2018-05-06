@@ -1,0 +1,120 @@
+/* body{background-image: url("img/bg.jpg");}做一个颜色渐变、或者渐变图片*/ 
+*{margin:0;padding: 0;}
+body{
+	background-image: url(../img/bg.png);
+	background-repeat:no-repeat;
+	/*background-size:100% 100%;*/
+	/*background-attachment: scroll;*/
+	overflow: hidden;
+	font-family: "Microsoft Yahei","微软雅黑",SimHei,"黑体","Hiragino Sans GB",STHeiTi,sans-serif;
+}
+#all{margin-left: auto;margin-right: auto;}
+#W{
+	width: 50%;
+	height: 50%;
+	margin-left: 4%;
+	margin-top: -5%;
+	/*-webkit-transform: scale(0.5);transform: scale(0.5);*/
+	-webkit-transform: rotate(-10deg);transform: rotate(-10deg);
+	
+}
+#M{
+	width: 55%;
+	height: 55%;
+	margin-left: 4%;
+	margin-top: -30%;
+	/*-webkit-transform: scale(0.5);transform: scale(0.5);*/
+	-webkit-transform: rotate(-10deg);transform: rotate(-10deg);
+	/*/overflow: hidden;*/
+}
+#leaf{
+	position: absolute;
+	left: 40%;
+	top: 5%;
+}
+button{
+	width: 8rem;
+	height: 1rem;
+	font-size: 0.5rem;
+	font-weight: solid;
+	background-color: #0AB9D8;
+	border-radius: 0.75rem;
+	opacity: 0.6;
+	border-style: none;
+	line-height: 100%;
+	outline: none;
+}
+button:hover{
+	transition-duration: 1.5s;
+	background-color:#098CCD;
+	opacity: 1;
+	color: white;
+}
+/*按钮鼠标悬停变色，透明度*/
+/*简历按钮*/
+button:nth-of-type(1){
+		position: absolute;
+		left: 57%;
+		top: 77%;
+}
+/*另一按钮*/
+button:nth-of-type(2){
+	position: absolute;
+	left: 17%;
+	top: 77%;
+	
+}
+audio{
+	position: absolute;
+	left: 23.0rem;
+	top:0.25rem;
+	opacity: 0.3;
+	border-radius: 0.75rem;
+}
+#dialog{
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -150px;
+	width: 400px;
+	height: 300px;
+	background:#F4F4F4;
+	opacity:0.9;
+	text-align: center;
+	display: none;
+	
+}
+	#dialog label{
+		display: block;
+		font-size: 40px;
+		color: #348C91;
+		margin-top: 30px;
+		
+	}
+	#dialog input{		
+		width: 200px;
+		height:40px;
+		margin-top: 40px;
+		position: position;
+		left: 50%;
+		margin-left: -30px;
+	}
+	#dialog #btn1{
+		width: 150px;
+		height: 30px;
+		left: 30px;
+
+	}
+	#dialog #btn2{
+		width: 150px;
+		height: 30px;
+		left: 220px;
+	}
+	#x{
+		display: none;
+		position: absolute;
+		left: 290px;
+		top: 135px;
+	}
