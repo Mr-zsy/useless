@@ -251,7 +251,7 @@ footer{
 }
 
 /*移动端*/
-@media screen and (max-width: 880px){
+@media screen and (max-width: 1023px){
 	.nav-wrapper{
 		height: 120px;
 	}
@@ -376,5 +376,16 @@ footer{
 }
 .copyright{
 	margin: 40px 0px;
+}
+}
+@media screen and (max-width: 414px){
+	.nav-wrapper{
+		height: 80px;
+	}
+	.article-items .article-item{
+		width: 100%;
+	}
+	.article-item:nth-of-type(4) {
+    margin-top: 0;
 }
 }

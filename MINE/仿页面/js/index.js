@@ -1,9 +1,4 @@
-$(function(){
-	if($(window).innerWidth()<=880){
-		$(".article-item:nth-of-type(8) img:nth-of-type(1)").attr({src :"img/m_a.jpg"});
-		$(".article-item:nth-of-type(8) img:nth-of-type(2)").attr({src :"img/m_b.jpg"});
-	}
-})
+
 // 导航菜单下划线
 $(".nav-item>a").hover(
 	function(){
