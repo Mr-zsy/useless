@@ -1,17 +1,20 @@
 $(function() {
 	if ($(window).innerWidth() <= 1023) {
 		//二维码显示
-		$("wei:nth-of-type(1)").hover(function() {
-			$("#erweima").css({
+		$(".wei:nth-of-type(1)").click(function() {
+			if($("#erweima").css("top") == "-210px"){
+				$("#erweima").css({
 				visibility: 'visible',
 				top: '-250px'
 			});
-		}, function() {
-			$("#erweima").css({
-				visibility: 'hidden',
-				top: '0'
-			});
+			}else{
+				$("#erweima").css({
+					visibility: 'hidden',
+					top: '-210px'
+				});
+			}
 		});
+
 		//导航栏宽度改变
 		$(".blank").height($(".nav-wrapper").height());
 		//菜单栏切换

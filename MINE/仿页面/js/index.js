@@ -5,7 +5,6 @@ $(".nav-item>a").hover(
 		$(this).siblings('.underline').css({
 			"border-style": "solid"
 		});
-		console.log("1");
 	},
 	function() {
 		$(this).siblings('.underline').width(0);

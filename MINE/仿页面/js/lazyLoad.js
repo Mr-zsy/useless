@@ -7,7 +7,6 @@ $(function() {
 			$(this).find('img').attr("src", $(this).find('img').attr("data-src"));
 		});
 	} else {
-		console.log("小屏");
 		loadImg();
 		$(window).scroll(function() {
 			loadImg();
