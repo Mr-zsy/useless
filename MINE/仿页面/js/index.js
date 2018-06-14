@@ -44,4 +44,8 @@ function scrollChange(start,height){
 	start = $(window).scrollTop();
 	});
 }
+//链接点击后主动失焦
+$("a").click(function(){
+	$(this).blur();
+});
 
