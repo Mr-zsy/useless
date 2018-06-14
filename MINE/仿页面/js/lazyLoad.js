@@ -4,7 +4,8 @@ $(function() {
 	// });
 	if ($(window).innerWidth() > 1023) {
 		$(".article-item").each(function(index, item) {
-			$(this).find('img').attr("src", $(this).find('img').attr("data-src"));
+			$(this).find('img:nth-of-type(1)').attr("src", $(this).find('img:nth-of-type(1)').attr("data-src"));
+			$(this).find('img:nth-of-type(2)').attr("src", $(this).find('img:nth-of-type(2)').attr("data-src"));
 		});
 	} else {
 		loadImg();
@@ -18,7 +19,8 @@ function loadImg() {
 	$(".article-item").each(function(index, item) {
 		// console.log($(this).offset());
 		if (($(window).scrollTop() + $(window).innerHeight()) >= $(this).offset().top) {
-			$(this).find('img').attr("src", $(this).find('img').attr("data-src"));
+			$(this).find('img:nth-of-type(1)').attr("src", $(this).find('img:nth-of-type(1)').attr("data-src"));
+			$(this).find('img:nth-of-type(2)').attr("src", $(this).find('img:nth-of-type(2)').attr("data-src"));
 		}
 	});
 }
