@@ -49,7 +49,7 @@ nav {
 
 .nav-logo,
 #nav-wrapper,
-#nav-search,
+.nav-search,
 #m-nav-wrapper {
     -webkit-box-flex: 1;
        -moz-box-flex: 1;
@@ -63,12 +63,12 @@ nav {
 
 .nav-logo a {
     display: inline-block;
-    width: 140px;
+    width: 110px;
     height: 35px;
     background-image: url(../img/logo.png);
-    -moz-background-size: 80%;
-         background-size: 80%;
-    background-position: 50%;
+    -moz-background-size: 95%;
+         background-size: 95%;
+    background-position: 0% 50%;
     background-repeat: no-repeat;
 }
 
