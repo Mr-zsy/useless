@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>520</title>
+
+        <style>
+        html, body{padding:0px; margin:0px; background:#222; font-family: 'Karla', sans-serif; color:#FFF; height:100%; overflow:hidden;}
+
+        canvas {width:100%; height:100%;}
+        
+        #text,#text_520{font-family:'楷体'; color:rgb(255,255,3); font-size:20px; position:fixed; left:10%; top:10%;}
+        
+        #text_520{margin: 200px auto; text-align: center;}
+        
+        img{position:fixed; top:0; left:0; width:100%;}
+        
+        #last{font-size:12px; bottom:10px; left:50%; position:fixed;}
+
+        audio{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        /*
+        @keyframes drop {
+           0% { 
+              transform: translateY(-100px);
+              opacity: 0;
+           }
+           90% {
+              opacity: 1;
+              transform:translateY(10px);
+           }
+           100% {
+              transform:translateY(0px;)
+           }
+        }
+        */
+        </style>
+    </head>
+    <body>
+
+        <canvas id="c"></canvas>
+        
+        <div id="text"></div>
+        
+				<div id="text_520">
+                    代码是抄的，喜欢你是真的～嘿嘿~
+                </div>
+				<audio src="./bg.mp3"　 autoplay="autoplay" loop controls></audio>
+        
+        <!-- <img src="./timg.jpg" class="img" /> -->
+        
+        
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+        <script type="text/javascript">
+            function isIE(){
+                var u = navigator.userAgent;
+                if((u.indexOf("compatible") > -1 && u.indexOf("MSIE") > -1) || (u.indexOf("Trident") > -1 && u.indexOf("rv:11.0") > -1)){
+                    alert("该浏览器暂不支持，请更换浏览器");
+                    window.open('','_self'); 
+                    window.close();
+                }
+                var audio = document.createElement("audio");
+                    audio.setAttribute("src","http://www.ytmp3.cn/down/63845.mp3");
+                    audio.setAttribute("autoplay","autoplay");
+            }
+            isIE();
+        </script>
+        <script type="text/javascript">
+        
+                var textArr = [
+                    'I love three things in this world,',
+                    'the sun ,the moon and you.',
+                    'The sun for the day,',
+                    'the moon for the night,',
+                    'and you forever!',
+                    '',
+                    '浮世万千,吾爱有三',
+                    '日月卿,',
+                    '日为朝,',
+                    '月为暮.',
+                    '卿为朝朝暮暮.',
+                ];
+                
+                var text_520 = document.getElementById('text_520');
+                var height = (window.innerHeight - text_520.offsetHeight) / 2;
+                var width = (window.innerWidth - text_520.offsetWidth) / 2;
+                
+                text_520.style.top = height + 'px';
+                text_520.style.left = width + 'px';
+                $('#text_520').hide();
+                //$('.img').hide();
+                
+                
+                var m = 0;
+                var n = 0;
+                var text = document.getElementById('text');
+                function typing(){
+                    if(m <= textArr[n].length) {
+                        text.innerHTML = text.innerHTML.substring(0,text.innerHTML.length-1) + textArr[n].substr(m++,1) + '_';
+                        setTimeout(typing,250);
+                    }else {
+                        if(n < textArr.length-1){
+                            text.innerHTML = text.innerHTML.substring(0,text.innerHTML.length-1) + "<br />_";
+                            n++;
+                            m = 0;
+                            typing();
+                        }else {
+                            text.innerHTML = text.innerHTML.substring(0,text.innerHTML.length-1);
+                            $('#text').fadeOut(5000);
+                            setTimeout(function(){$('#text_520').fadeIn(5000);},7000);
+                            //setTimeout(function(){$('#text_520').fadeOut(5000); },7000);
+                            setTimeout(function(){$('.img').fadeIn(50000);},15000)
+                        }
+                    }
+                }
+                setTimeout(typing,5000);
+            
+            var ctx = document.querySelector('canvas').getContext('2d');
+                ctx.canvas.width = window.innerWidth;
+                ctx.canvas.height = window.innerHeight;
+
+            var sparks = [];
+            var fireworks = [];
+            
+            var walker;
+            
+            fireworks.pop();
+            
+            var i = 10;
+            while(i--) fireworks.push(new Firework(Math.random()*window.innerWidth, window.innerHeight*Math.random()));
+            
+            // setInterval(render, 1000/50);
+            render();
+            function render() {
+                
+                setTimeout(render, 1000/50);
+                
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                
+                // 上升效果
+                for(var firework of fireworks) {
+                    if(firework.dead) continue;
+                    firework.move();
+                    firework.draw();
+                }
+                // 绽放效果
+                for(var spark of sparks) {
+                    if(spark.dead) continue;
+                    spark.move();
+                    spark.draw();
+                    
+                }
+                
+                if(Math.random() < 0.1) fireworks.push(new Firework());
+                
+                //ctx.height = ctx.height;
+            }
+
+            function Spark(x, y, color) {
+               this.x = x;
+               this.y = y;
+               this.dir = Math.random() * (Math.PI*2);
+               this.dead = false;
+               this.color = color;
+               this.speed = Math.random() * 3 + 3;
+               walker = new Walker({ radius: 20, speed: 0.25 });
+               this.gravity = 0.25;
+               this.dur = this.speed / 0.15;
+               this.move = function() {
+                  this.dur--;
+                  if(this.dur < 0) this.dead = true;
+                  
+                  if(this.speed < 0) return;
+                  if(this.speed > 0) this.speed -= 0.15;
+                  walk = walker.step();
+                  this.x += Math.cos(this.dir + walk) * this.speed;
+                  this.y += Math.sin(this.dir + walk) * this.speed;
+                  this.y += this.gravity;
+                  this.gravity += 0.05;
+                  
+               }
+               this.draw = function() {
+                  drawCircle(this.x, this.y, 2, this.color);
+               }
+               
+            }
+            
+            function Firework(x, y) {
+               this.xmove = Math.random()*2 - 1;
+               this.x = x || Math.random() * ctx.canvas.width;
+               this.y = y || ctx.canvas.height;
+               this.height = Math.random()*ctx.canvas.height/2;
+               this.dead = false;
+               this.color = randomColor();
+               
+               this.move = function() {
+                  this.x += this.xmove;
+                  if(this.y > this.height) this.y -= 4; 
+                  else this.burst();
+                  
+               }
+               
+               this.draw = function() {
+                  drawCircle(this.x, this.y, 3, this.color)
+               }
+               
+               this.burst = function() {
+                  this.dead = true
+                  i = 100; while(i--) sparks.push(new Spark(this.x, this.y, this.color));
+                  sparks.pop();
+               }
+               
+            }
+            
+            setTimeout(function (){window.open('','_self').close();},175000);
+            
+/*
+
+            // 清除两个数组
+            function clear(){
+                if(sparks!=null || fireworks!=null){
+                    sparks.pop();
+                    fireworks.pop();
+                }
+                var sparks = [];
+                var fireworks = [];
+            }
+           
+            setInterval(clear,100);
+             */
+            function drawCircle(x, y, radius, color) {
+               color = color || '#FFF';
+               ctx.fillStyle = color;
+               ctx.fillRect(x-radius/2, y-radius/2, radius, radius);
+            }
+
+            function randomColor(){
+               return ['#6ae5ab','#88e3b2','#36b89b','#7bd7ec','#66cbe1'][Math.floor(Math.random() * 5)];
+            }
+
+            function Walker(options){
+               this.step = function(){
+                  this.direction = Math.sign(this.target) * this.speed
+                  this.value += this.direction
+                  this.target
+                     ? this.target -= this.direction
+                     : (this.value)
+                        ? (this.wander) 
+                           ? this.target = this.newTarget() 
+                           : this.target = -this.value
+                        : this.target = this.newTarget()  
+                  return this.direction
+               }
+                  
+               this.newTarget = function() {
+                  return Math.round(Math.random()*(this.radius*2)-this.radius)
+               }
+               
+               this.start = 0
+               this.value = 0
+               this.radius = options.radius
+               this.target = this.newTarget()
+               this.direction = Math.sign(this.target)
+               this.wander = options.wander
+               this.speed = options.speed || 1
+            }
+        </script>
+
+    </body>
+</html>
