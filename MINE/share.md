@@ -49,6 +49,7 @@ https://daneden.github.io/animate.css/
     - 换淘宝源：https://npm.taobao.org/
 - __webpack__  
     - 官方文档： https://www.webpackjs.com/
+    - 《深入浅出webpack》: https://github.com/gwuhaolin/dive-into-webpack
     - 视频教程：
 - __框架：__  
 `目前市场react所占比重比较大，vue在逐渐崛起市场份额越来越大，任意一个都有市场，小程序近几年兴起比较火，易上手可以作为辅助技能`
